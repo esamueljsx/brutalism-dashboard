@@ -77,8 +77,8 @@ export function EmailSidebar({
               onClick={() => handleViewChange(item.view)}
               className={`w-full flex items-center justify-between px-3 py-2 rounded-[6px] h-fit font-medium text-sm ${
                 isActive
-                  ? ""
-                  : "border-transparent border hover:bg-neutral-100 hover:border hover:border-black"
+                  ? "lg:bg-neutral-100 bg-white"
+                  : "border-transparent border hover:bg-white lg:hover:bg-neutral-100 hover:border hover:border-black"
               }`}
             >
               <div className="flex items-center gap-2">
@@ -100,7 +100,7 @@ export function EmailSidebar({
             <Button
               variant="link"
               key={label}
-              className="border-transparent border w-full hover:bg-neutral-100 hover:border hover:border-black h-auto py-2 px-3 font-medium text-sm justify-start rounded-[6px]"
+              className="border-transparent border w-full hover:bg-white lg:hover:bg-neutral-100 hover:border hover:border-black h-auto py-2 px-3 font-medium text-sm justify-start rounded-[6px]"
             >
               <BsTag size={16} />
               <span>{label}</span>

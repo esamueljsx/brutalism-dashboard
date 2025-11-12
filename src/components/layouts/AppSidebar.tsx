@@ -87,7 +87,11 @@ export function AppSidebar() {
                                 <SidebarMenuSubButton
                                   asChild
                                   isActive={location.pathname === subItem.href}
-                                  className="hover:bg-lime-200/50"
+                                  className={`rounded-[4px] border border-black w-full px-4 ${
+                                    location.pathname === subItem.href
+                                      ? "bg-white"
+                                      : "hover:bg-white hover:border-black border-transparent"
+                                  }`}
                                 >
                                   <Link to={subItem.href}>{subItem.name}</Link>
                                 </SidebarMenuSubButton>

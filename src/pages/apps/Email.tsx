@@ -239,7 +239,7 @@ export function Email() {
                 {/* select email */}
                 <input
                   type="checkbox"
-                  className="size-4 border border-black rounded accent-lime-600"
+                  className="size-3 border border-black rounded accent-lime-600 shrink-0"
                 />
 
                 {/* Star email */}
@@ -251,7 +251,7 @@ export function Email() {
                   className="shrink-0"
                 >
                   <BsStarFill
-                    size={18}
+                    size={16}
                     className={`transition-all ${
                       email.isStarred
                         ? "fill-orange-500 text-orange-500"
@@ -263,13 +263,13 @@ export function Email() {
                 {/* Email Content */}
                 <div>
                   <p
-                    className={`mb-1 line-clamp-1 overflow-hidden ${
+                    className={`line-clamp-1 overflow-hidden text-sm lg:text-base ${
                       !email.isRead ? "font-semibold" : "font-medium"
                     }`}
                   >
                     {email.subject}
                   </p>
-                  <p className="line-clamp-1 overflow-hidden max-w-[55vw]">
+                  <p className="text-sm lg:text-base line-clamp-1 overflow-hidden max-w-[55vw]">
                     {email.body}
                   </p>
                 </div>

@@ -126,7 +126,7 @@ export function Layout({ children }: LayoutProps) {
 
         {/* Footer */}
         <footer className="pt-2 pb-6">
-          <p className="text-center text-sm">
+          <p className="text-center text-xs lg:text-sm">
             Copyright &copy; {new Date().getFullYear()}
           </p>
         </footer>

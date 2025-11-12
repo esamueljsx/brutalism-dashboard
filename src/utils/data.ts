@@ -17,9 +17,11 @@ import {
   BsPersonFill,
   BsPuzzleFill,
   BsRocketTakeoffFill,
-  BsFacebook,
-  BsTwitter,
+  BsFacebook, 
   BsGoogle,
+  BsTwitterX,
+  BsTiktok,
+  BsBing,
 } from "react-icons/bs";
 
 export const statisticsData: Statistics[] = [
@@ -204,7 +206,7 @@ export const budgetByPlatform = [
     name: "twitter",
     remaining: "$15,432",
     percentage: 86,
-    icon: BsTwitter,
+    icon: BsTwitterX,
     color: "bg-primary/20",
   },
   {
@@ -218,7 +220,7 @@ export const budgetByPlatform = [
     name: "tiktok",
     remaining: "$3,456",
     percentage: 21,
-    icon: BsGoogle,
+    icon: BsTiktok,
     color: "bg-red-200/50",
     track: "bg-red-500",
   },
@@ -226,7 +228,7 @@ export const budgetByPlatform = [
     name: "bing",
     remaining: "$2,098",
     percentage: 35,
-    icon: BsGoogle,
+    icon: BsBing,
     color: "bg-yellow-200/50",
     track: "bg-yellow-500",
   },
