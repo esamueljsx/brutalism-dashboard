@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Layout } from "../components/layouts/Layout";
@@ -5,8 +6,8 @@ import { Skeleton } from "../components/ui/skeleton";
 
 import { SignIn } from "../pages/SignIn";
 
-import { Dashboard } from "../pages/Dashboard";
-import { Email } from "@/pages/apps/Email";
+const Dashboard = lazy(() => import("@/pages/Dashboard").then(module => ({ default: module.Dashboard })));
+const Email = lazy(() => import("@/pages/apps/Email").then(module => ({ default: module.Email })));
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();

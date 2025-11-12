@@ -40,3 +40,60 @@ export interface Statistics {
   progress: string;
   trend: "up" | "down";
 }
+
+// Email types
+export interface EmailAttachment {
+  id: string;
+  email_id: string;
+  filename: string;
+  size: number;
+  type: string;
+  url: string;
+  created_at: string;
+}
+
+export interface Email {
+  id: string;
+  userId: string;
+  from: string;
+  to: string;
+  subject: string;
+  body: string;
+  isRead: boolean;
+  isStarred: boolean;
+  isImportant: boolean;
+  hasAttachments: boolean;
+  attachments: EmailAttachment[];
+  labels: string[];
+  timestamp: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EmailResponse {
+  success: boolean;
+  data: Email[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
+
+export type EmailView =
+  | "inbox"
+  | "starred"
+  | "important"
+  | "unread"
+  | "sent"
+  | "drafts"
+  | "trash";
+
+export interface EmailFilters {
+  view?: EmailView;
+  labels?: string[];
+  search?: string;
+  page?: number;
+  limit?: number;
+}

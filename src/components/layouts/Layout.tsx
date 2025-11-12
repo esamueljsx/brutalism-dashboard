@@ -86,7 +86,7 @@ export function Layout({ children }: LayoutProps) {
               <DropdownMenuTrigger>
                 <div className="size-7 thick-shadow-sm rounded-full bg-white flex items-center justify-center overflow-hidden">
                   <img
-                    src="https://brutalism.tailwinddashboard.com/src/img/avatar/male3.jpg"
+                    src="https://brutalism.tailwinddashboard.com/src/img/avatar/female1.jpg"
                     alt="avatar"
                     className="w-full h-full object-cover"
                   />
@@ -122,7 +122,7 @@ export function Layout({ children }: LayoutProps) {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 p-4 mx-auto container">{children}</main>
+        <main className="flex-1 px-3 py-4 lg:p-4 mx-auto container">{children}</main>
 
         {/* Footer */}
         <footer className="pt-2 pb-6">

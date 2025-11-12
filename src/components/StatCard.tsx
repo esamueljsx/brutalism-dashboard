@@ -14,7 +14,7 @@ const StatCard = ({
       <p className="text-base font-medium">{name}</p>
 
       <div className="flex items-center justify-between gap-2">
-        <h5 className="text-3xl font-bold">{value}</h5>
+        <h5 className="text-3xl font-semibold">{value}</h5>
         <Icon className="text-lime-500 text-3xl" />
       </div>
 

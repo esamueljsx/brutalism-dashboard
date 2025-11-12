@@ -1,58 +1,84 @@
 import type { AuthResponse, LoginCredentials, User } from "../types";
 import { tokenHelpers } from "../utils/auth";
 
-// Mock user database
-const MOCK_USERS = [
-  {
-    id: "2",
-    email: "user@habaripay.com",
-    password: "user123",
-    name: "Ari budin",
-    avatar: "https://brutalism.tailwinddashboard.com/src/img/avatar/male3.jpg",
-  },
-];
+const BASE_API_URL = import.meta.env.VITE_API_URL;
 
-// Simulate API delay
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+interface LoginApiResponse {
+  success: boolean;
+  data: {
+    user: {
+      id: string;
+      email: string;
+      name: string;
+      role: string;
+      avatar: string | null;
+      created_at: string;
+      updated_at: string;
+    };
+    token: string;
+  };
+  message: string;
+}
 
 export const authService = {
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
-    await delay(800); // Simulate network request
+    try {
+      const response = await fetch(`${BASE_API_URL}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
+ 
+      const text = await response.text();
+ 
+      let data: LoginApiResponse;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        console.error("Invalid JSON response:", text);
+        throw new Error(
+          "Invalid response from server. Please check your API URL and try again."
+        );
+      }
 
-    const user = MOCK_USERS.find(
-      (u) =>
-        u.email === credentials.email && u.password === credentials.password
-    );
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
 
-    if (!user) {
-      throw new Error("Invalid email or password");
+      const userData: User = {
+        id: data.data.user.id,
+        email: data.data.user.email,
+        name: data.data.user.name,
+        avatar: data.data.user.avatar || undefined,
+      };
+
+      tokenHelpers.setToken(data.data.token);
+      tokenHelpers.setUser(userData);
+
+      return { user: userData, token: data.data.token };
+    } catch (error) {
+      console.error("Login error:", error);
+      if (error instanceof Error) {
+        throw error;
+      }
+      throw new Error("An unexpected error occurred during login");
     }
-
-    const token = btoa(`${user.email}:${Date.now()}`); // Simple mock token
-    const userData: User = {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      avatar: user.avatar,
-    };
-
-    tokenHelpers.setToken(token);
-    tokenHelpers.setUser(userData);
-
-    return { user: userData, token };
   },
 
   async logout(): Promise<void> {
-    await delay(300);
+    // Clearing authentication data from cookies
     tokenHelpers.clearAuth();
   },
 
   async validateToken(): Promise<User | null> {
-    await delay(300);
+    // Check if token and user exist in cookies
     const token = tokenHelpers.getToken();
     const user = tokenHelpers.getUser<User>();
 
     if (!token || !user) {
+      tokenHelpers.clearAuth();
       return null;
     }
 

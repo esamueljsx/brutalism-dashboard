@@ -63,7 +63,7 @@ export function SignIn() {
               <Input
                 id="email"
                 type="email"
-                placeholder="user@habaripay.com"
+                placeholder="sarah.johnson@techcorp.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -76,7 +76,7 @@ export function SignIn() {
               <Input
                 id="password"
                 type="password"
-                placeholder="user123"
+                placeholder="SecurePass123!"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
